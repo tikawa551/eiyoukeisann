@@ -48,6 +48,10 @@ if uploaded_file is not None:
     # アップロードされたデータとセッションのデータをマージ（重複を削除）
     st.session_state.food_data = pd.concat([st.session_state.food_data, uploaded_data]).drop_duplicates().reset_index(drop=True)
 
+else:
+    # ファイルがアップロードされていない場合、データをクリアする
+    st.session_state.food_data = pd.DataFrame(columns=['食品名', 'エネルギー（kcal）', 'たんぱく質（g）', '脂質（g）', '炭水化物（g）', '食塩相当量（g）'])    
+
 if page == "食品データベース登録":
     # データベース登録用のフォームをサイドバーに表示
     st.sidebar.subheader("新規食品の登録")
