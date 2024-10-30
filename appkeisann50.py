@@ -46,11 +46,7 @@ uploaded_file = st.sidebar.file_uploader("食品データベースをアップ�
 if uploaded_file is not None:
     uploaded_data = pd.read_csv(uploaded_file)
     # アップロードされたデータとセッションのデータをマージ（重複を削除）
-    st.session_state.food_data = pd.concat([st.session_state.food_data, uploaded_data]).drop_duplicates().reset_index(drop=True)
-
-else:
-    # ファイルがアップロードされていない場合、データをクリアする
-    st.session_state.food_data = pd.DataFrame(columns=['食品名', 'エネルギー（kcal）', 'たんぱく質（g）', '脂質（g）', '炭水化物（g）', '食塩相当量（g）'])    
+    st.session_state.food_data = pd.concat([st.session_state.food_data, uploaded_data]).drop_duplicates().reset_index(drop=True)    
 
 if page == "食品データベース登録":
     # データベース登録用のフォームをサイドバーに表示
@@ -133,10 +129,7 @@ elif page == "栄養価計算":
     st.sidebar.subheader("栄養価計算")
     uploaded_results = st.sidebar.file_uploader("既存データをアップロード", type=['csv'])
 
-     # ファイルが削除されたら計算表をクリアする
-    if uploaded_results is None:
-        st.session_state.selected_foods = pd.DataFrame(columns=['食品名', '重量（g）', 'エネルギー（kcal）', 'たんぱく質（g）', '脂質（g）', '炭水化物（g）', '食塩相当量（g）', '材料の説明'])
-    else:
+   if uploaded_results is not None:
         uploaded_data = pd.read_csv(uploaded_results)
         uploaded_data = uploaded_data[uploaded_data['食品名'] != '合計']
         st.session_state.selected_foods = pd.concat([st.session_state.selected_foods, uploaded_data]).drop_duplicates().reset_index(drop=True)
