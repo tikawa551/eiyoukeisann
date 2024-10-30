@@ -46,7 +46,7 @@ uploaded_file = st.sidebar.file_uploader("食品データベースをアップ�
 if uploaded_file is not None:
     uploaded_data = pd.read_csv(uploaded_file)
     # アップロードされたデータとセッションのデータをマージ（重複を削除）
-    st.session_state.food_data = pd.concat([st.session_state.food_data, uploaded_data]).drop_duplicates().reset_index(drop=True)    
+    st.session_state.food_data = pd.concat([st.session_state.food_data, uploaded_data]).drop_duplicates().reset_index(drop=True)   
 
 if page == "食品データベース登録":
     # データベース登録用のフォームをサイドバーに表示
