@@ -30,7 +30,7 @@ if 'food_data' not in st.session_state:
 if 'selected_foods' not in st.session_state:
     st.session_state.selected_foods = pd.DataFrame(columns=['食品名', '重量（g）', 'エネルギー（kcal）', 'たんぱく質（g）', '脂質（g）', '炭水化物（g）', '食塩相当量（g）', '材料の説明'])
 
-st.title("栄養価計算アプリ")
+st.title("栄養価計算Webアプリ")
 
 # サイドバーのページ選択
 page = st.sidebar.selectbox("ページを選択", ["食品データベース登録", "栄養価計算"])
